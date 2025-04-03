@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../../.flowbite-react/class-list.json";
 
 :root {
   --background: #ffffff;
@@ -18,9 +20,65 @@
     --foreground: #ededed;
   }
 }
-
+html{
+  scroll-behavior: smooth;
+}
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+/* Barra de rolagem inteira */
+::-webkit-scrollbar {
+  width: 15px; /* Largura da barra vertical */
+  height: 12px; /* Altura da barra horizontal */
+}
+
+/* Fundo da barra (track) */
+::-webkit-scrollbar-track {
+  background: white; /* Cor do fundo */
+}
+
+/* Parte móvel (thumb) */
+::-webkit-scrollbar-thumb {
+  background: #ffc3e4; /* Cor do thumb */
+}
+
+/* Thumb ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #f476b8; /* Cor ao passar o mouse */
+}
+
+::selection {
+  background: #ffc3e4; /* Cor de fundo da seleção */
+  color: #ffffff; /* Cor do texto selecionado */
+}
+.btnWhats:hover {
+  box-shadow: #77f473 0px 0px 70px;
+}
+ol{
+  display: flex ;
+  flex-direction: column;
+}
+ol li{
+  display: flex;
+  align-items: center;
+}
+.animate-text-color {
+  animation: textColorChange 6s ease-in-out infinite;
+}
+
+@keyframes textColorChange {
+  0% {
+    color: #f87171; /* Vermelho suave */
+  }
+  33% {
+    color: #a855f7; /* Roxo suave */
+  }
+  66% {
+    color: #733bf6; /* Azul suave */
+  }
+  100% {
+    color: #f87171; /* Volta ao vermelho */
+  }
 }
