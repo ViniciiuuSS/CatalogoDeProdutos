@@ -46,7 +46,7 @@ export default function Home() {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                     </svg>
                   </span>
-                  <Icon icon="game-icons:heart-necklace" className="text-black m-1" width="16" height="16" />
+                  <Icon icon="game-icons:heart-necklace" className="text-black m-1 animate-text-color" width="16" height="16" />
                   <h3 className="flex font-medium leading-tight">Colares Deslumbrantes</h3>
                 </li>
                 <li className="mb-10 ms-6">
@@ -55,7 +55,7 @@ export default function Home() {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                     </svg>
                   </span>
-                  <Icon icon="game-icons:diamond-ring" className="text-black m-1" width="16" height="16" />
+                  <Icon icon="game-icons:diamond-ring" className="text-black m-1 animate-text-color" width="16" height="16" />
                   <h3 className="flex font-medium leading-tight">Anéis Elegantes</h3>
                 </li>
                 <li className="mb-10 ms-6">
@@ -64,7 +64,7 @@ export default function Home() {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                     </svg>
                   </span>
-                  <Icon icon="game-icons:heart-earrings" className="text-black m-1" width="16" height="16" />
+                  <Icon icon="game-icons:heart-earrings" className="text-black m-1 animate-text-color" width="16" height="16" />
                   <h3 className="flex font-medium leading-tight">Brincos Sofisticados</h3>
                 </li>
                 <li className="ms-6">
@@ -73,7 +73,7 @@ export default function Home() {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />
                     </svg>
                   </span>
-                  <Icon icon="game-icons:diamonds" className="text-black m-1" width="16" height="16" />
+                  <Icon icon="game-icons:diamonds" className="text-black m-1 animate-text-color" width="16" height="16" />
                   <h3 className="flex font-medium leading-tight">Pulseiras Charmosas</h3>
                 </li>
               </ol>
