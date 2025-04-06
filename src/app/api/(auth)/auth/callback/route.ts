@@ -38,6 +38,12 @@ export async function GET(request: Request) {
     // Redireciona para a página principal com o token na URL
     return NextResponse.redirect(`http://localhost:3000?token=${access_token}`);
   } catch (error) {
-    return NextResponse.json({ error: error }, { status: 500 });
+    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
