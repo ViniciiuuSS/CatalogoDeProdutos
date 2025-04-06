@@ -13,8 +13,8 @@ export default function Produtos() {
   };
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
+    //const urlParams = new URLSearchParams(window.location.search);
+    const token = process.env.TOKEN;
 
     if (usePicsum) {
       fetchImages("");

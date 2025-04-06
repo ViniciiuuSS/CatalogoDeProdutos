@@ -11,7 +11,6 @@ export async function GET(req: NextRequest) {
     const response = await fetch(imageUrl, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    console.log(response);
     if (!response.ok) {
       throw new Error("Erro ao buscar imagem do Google Drive");
     }
