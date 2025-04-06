@@ -1,11 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const id = searchParams.get("id");
-  const accessToken = searchParams.get("token");
-
-  const imageUrl = `https://drive.google.com/uc?export=view&id=${id}`;
+export async function GET(request: Request, { params }: { params: { id: string } }) {
+  const accessToken = request.headers.get("authorization")?.replace("Bearer ", "");
+  const imageUrl = `https://drive.google.com/uc?export=view&id=${params.id}`;
 
   try {
     const response = await fetch(imageUrl, {
