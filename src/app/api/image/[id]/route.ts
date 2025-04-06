@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
-  const accessToken = searchParams.get("token");
+  const accessToken = process.env.TOKEN;
 
   const imageUrl = `https://drive.google.com/uc?export=view&id=${id}`;
 
