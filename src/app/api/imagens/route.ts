@@ -4,7 +4,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   let accessToken = searchParams.get("token");
   if (!accessToken) {
-    accessToken = process.env.TOKEN || "";
+    accessToken = process.env.GOOGLE_DRIVE_TOKEN || "";
   }
   const clientId = process.env.GOOGLE_DRIVE_CLIENT_ID || "";
   const folderId = "1RtdUWoMRbNB8hRiGNfsDlBHnCeRvSqgD";
