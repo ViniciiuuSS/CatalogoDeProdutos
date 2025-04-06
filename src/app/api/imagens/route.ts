@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   let accessToken = searchParams.get("token");
-  if (!accessToken) {
+  if (accessToken != "") {
     accessToken = process.env.TOKEN || "";
   }
   const clientId = process.env.GOOGLE_DRIVE_CLIENT_ID || "";
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
   const arrayImagens: Array<object> = [];
 
   // Se GOOGLE_DRIVE_CLIENT_ID não existir ou não houver token, faz 10 requisições ao Picsum
-  if (!clientId || !accessToken) {
+  if (!clientId || accessToken != "") {
     const picsumUrl = "https://picsum.photos/400/400";
 
     try {
