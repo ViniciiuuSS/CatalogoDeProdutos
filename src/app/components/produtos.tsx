@@ -22,7 +22,7 @@ export default function Produtos() {
     } else if (tokenFromUrl || fallbackToken) {
       fetchImages(tokenFromUrl || fallbackToken || "");
     }
-  }, [usePicsum]);
+  }, []);
 
   const fetchImages = async (token: string) => {
     try {
