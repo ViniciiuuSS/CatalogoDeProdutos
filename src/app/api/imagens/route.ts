@@ -2,23 +2,17 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  let accessToken = searchParams.get("token");
-  if (!accessToken) {
-    accessToken = process.env.GOOGLE_DRIVE_TOKEN || "";
-  }
-  const clientId = process.env.GOOGLE_DRIVE_CLIENT_ID || "";
+  const accessToken = searchParams.get("token") || process.env.GOOGLE_DRIVE_TOKEN || "";
+  //const clientId = process.env.GOOGLE_DRIVE_CLIENT_ID || "";
   const folderId = "1RtdUWoMRbNB8hRiGNfsDlBHnCeRvSqgD";
 
   // Função para gerar IDs aleatórios
-  function gerarIdRandom() {
-    return crypto.randomUUID();
-  }
+  const gerarIdRandom = () => crypto.randomUUID();
 
-  const arrayImagens: Array<object> = [];
-
-  // Se GOOGLE_DRIVE_CLIENT_ID não existir ou não houver token, faz 10 requisições ao Picsum
-  if (!clientId || !accessToken) {
+  // Função auxiliar para buscar imagens do Picsum
+  const fetchPicsumImages = async () => {
     const picsumUrl = "https://picsum.photos/400/400";
+    const arrayImagens = [];
 
     try {
       for (let i = 0; i < 10; i++) {
@@ -34,15 +28,17 @@ export async function GET(request: Request) {
       }
       return NextResponse.json(arrayImagens);
     } catch (error) {
-      return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+      return NextResponse.json({ error: error }, { status: 500 });
     }
-  }
+  };
 
-  // Se GOOGLE_DRIVE_CLIENT_ID existir, usa o access_token (OAuth)
+  // Primeira verificação: GOOGLE_DRIVE_TOKEN
   if (!accessToken) {
-    return NextResponse.json({ error: "Token não fornecido" }, { status: 400 });
+    console.warn("GOOGLE_DRIVE_TOKEN não fornecido. Usando Picsum como fallback.");
+    return fetchPicsumImages();
   }
 
+  // Se há token, prossegue para o Google Drive (mesmo sem clientId)
   const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name,webViewLink,thumbnailLink,webContentLink)`;
   try {
     const response = await fetch(url, {
@@ -51,7 +47,9 @@ export async function GET(request: Request) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.error.message || "Erro ao buscar imagens");
+      // Se o token for inválido ou houver outro erro, cai no Picsum
+      console.warn("Erro na autenticação do Google Drive:", data.error?.message);
+      return fetchPicsumImages();
     }
 
     const images = data.files.map((file: { id: string | null; webViewLink: string | null; thumbnailLink: string | null; webContentLink: string | null }) => ({
@@ -62,6 +60,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(images);
   } catch (error) {
-    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
+    console.error("Erro inesperado ao acessar Google Drive:", error);
+    return fetchPicsumImages(); // Fallback em caso de erro inesperado
   }
 }
