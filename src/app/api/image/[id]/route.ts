@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  // Extrai o pathname da URL (ex.: "/api/image/15hktv-zgn2JKvRDfnCEeT8CV1foXgbB2")
   const url = new URL(req.url);
   const pathname = url.pathname;
   
