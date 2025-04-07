@@ -14,12 +14,13 @@ export default function Produtos() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
+    const tokenFromUrl = urlParams.get("token");
+    const fallbackToken = process.env.GOOGLE_DRIVE_TOKEN;
 
     if (usePicsum) {
       fetchImages("");
-    } else if (token) {
-      fetchImages(token);
+    } else if (tokenFromUrl || fallbackToken) {
+      fetchImages(tokenFromUrl || fallbackToken || "");
     }
   }, [usePicsum]);
 
