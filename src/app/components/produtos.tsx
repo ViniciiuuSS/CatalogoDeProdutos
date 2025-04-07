@@ -52,7 +52,7 @@ export default function Produtos() {
             <div className="mt-4 flex justify-between">
               <div>
                 <h3 className="text-sm text-gray-700">
-                  <a href={product.href}>
+                  <a href="https://api.whatsapp.com/send?phone=5517996183333&text=$Comprar Produto">
                     <span aria-hidden="true" className="absolute inset-0" />
                   </a>
                 </h3>
