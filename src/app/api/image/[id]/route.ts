@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const id = searchParams.get("id");
-  const accessToken = process.env.GOOGLE_DRIVE_TOKEN;
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+  const id = params.id;
 
+  const accessToken = process.env.GOOGLE_DRIVE_TOKEN;
   const imageUrl = `https://drive.google.com/uc?export=view&id=${id}`;
 
   try {
@@ -18,8 +17,8 @@ export async function GET(req: NextRequest) {
     const imageBlob = await response.blob();
     return new NextResponse(imageBlob, {
       headers: {
-        "Content-Type": imageBlob.type || "image/jpeg", // Ajuste conforme o tipo da imagem
-        "Cache-Control": "public, max-age=31536000", // Cache por 1 ano (opcional)
+        "Content-Type": imageBlob.type || "image/jpeg",
+        "Cache-Control": "public, max-age=31536000",
       },
     });
   } catch (error) {
