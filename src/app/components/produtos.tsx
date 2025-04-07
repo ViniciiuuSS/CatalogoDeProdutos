@@ -14,7 +14,7 @@ export default function Produtos() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token") || process.env.GOOGLE_DRIVE_TOKEN || "";
+    const token = urlParams.get("token");
 
     if (usePicsum) {
       fetchImages("");
