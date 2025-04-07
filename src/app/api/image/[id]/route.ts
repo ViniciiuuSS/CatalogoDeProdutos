@@ -1,15 +1,16 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
-  const accessToken = request.headers.get("authorization")?.replace("Bearer ", "");
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  const accessToken = process.env.TOKEN;
+
   const imageUrl = `https://drive.google.com/uc?export=view&id=${id}`;
 
   try {
     const response = await fetch(imageUrl, {
-      headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : undefined,
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
-
     if (!response.ok) {
       throw new Error("Erro ao buscar imagem do Google Drive");
     }
@@ -17,8 +18,8 @@ export async function GET(request: NextRequest, context: { params: { id: string 
     const imageBlob = await response.blob();
     return new NextResponse(imageBlob, {
       headers: {
-        "Content-Type": imageBlob.type || "image/jpeg",
-        "Cache-Control": "public, max-age=31536000",
+        "Content-Type": imageBlob.type || "image/jpeg", // Ajuste conforme o tipo da imagem
+        "Cache-Control": "public, max-age=31536000", // Cache por 1 ano (opcional)
       },
     });
   } catch (error) {
