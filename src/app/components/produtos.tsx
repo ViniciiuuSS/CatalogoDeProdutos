@@ -6,7 +6,7 @@ import Await from "./await";
 export default function Produtos() {
   const [products, setProducts] = useState<{ id: string; href: string; url: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [usePicsum] = useState<boolean>(false);
+  const [usePicsum] = useState<boolean>(true);
 
   const handleLogin = () => {
     window.location.href = "/api/auth";
@@ -14,15 +14,14 @@ export default function Produtos() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const tokenFromUrl = urlParams.get("token");
-    const fallbackToken = process.env.GOOGLE_DRIVE_TOKEN;
+    const token = urlParams.get("token");
 
     if (usePicsum) {
       fetchImages("");
-    } else if (tokenFromUrl || fallbackToken) {
-      fetchImages(tokenFromUrl || fallbackToken || "");
+    } else if (token) {
+      fetchImages(token);
     }
-  }, []);
+  }, [usePicsum]);
 
   const fetchImages = async (token: string) => {
     try {
@@ -44,7 +43,7 @@ export default function Produtos() {
 
   return (
     <div>
-      {(!usePicsum && !products.length && !error) || (!process.env.GOOGLE_DRIVE_TOKEN && <button onClick={handleLogin}>Conectar ao Google Drive</button>)}
+      {!usePicsum && !products.length && !error && <button onClick={handleLogin}>Conectar ao Google Drive</button>}
       {error && <p>{error}</p>}
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {products.map((product) => (
