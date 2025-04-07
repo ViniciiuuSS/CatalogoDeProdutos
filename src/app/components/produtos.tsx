@@ -6,7 +6,7 @@ import Await from "./await";
 export default function Produtos() {
   const [products, setProducts] = useState<{ id: string; href: string; url: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [usePicsum] = useState<boolean>(true);
+  const [usePicsum] = useState<boolean>(false);
 
   const handleLogin = () => {
     window.location.href = "/api/auth";
@@ -14,7 +14,7 @@ export default function Produtos() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get("token");
+    const token = urlParams.get("token") || process.env.GOOGLE_DRIVE_TOKEN || "";
 
     if (usePicsum) {
       fetchImages("");
