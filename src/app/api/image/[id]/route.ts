@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-<<<<<<< HEAD
 export async function GET(req: NextRequest) {
   // Extrai o pathname da URL (ex.: "/api/image/15hktv-zgn2JKvRDfnCEeT8CV1foXgbB2")
   const url = new URL(req.url);
@@ -17,12 +16,6 @@ export async function GET(req: NextRequest) {
   const accessToken = process.env.GOOGLE_DRIVE_TOKEN;
 
   // Monta a URL da imagem no Google Drive
-=======
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-  const id = params.id;
-
-  const accessToken = process.env.GOOGLE_DRIVE_TOKEN;
->>>>>>> cee5396372c2ab20f61643fb829af0a31b4f3900
   const imageUrl = `https://drive.google.com/uc?export=view&id=${id}`;
 
   try {
@@ -30,6 +23,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const response = await fetch(imageUrl, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
+
+    // Verifica se a resposta foi bem-sucedida
 
     // Verifica se a resposta foi bem-sucedida
     if (!response.ok) {
@@ -40,18 +35,16 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     const imageBlob = await response.blob();
 
     // Retorna a imagem com os cabeçalhos apropriados
+
+    // Retorna a imagem com os cabeçalhos apropriados
     return new NextResponse(imageBlob, {
       headers: {
-<<<<<<< HEAD
         "Content-Type": imageBlob.type || "image/jpeg", // Define o tipo da imagem
         "Cache-Control": "public, max-age=31536000",    // Cache por 1 ano (opcional)
-=======
-        "Content-Type": imageBlob.type || "image/jpeg",
-        "Cache-Control": "public, max-age=31536000",
->>>>>>> cee5396372c2ab20f61643fb829af0a31b4f3900
       },
     });
   } catch (error) {
+    // Retorna erro em caso de falha
     // Retorna erro em caso de falha
     return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
