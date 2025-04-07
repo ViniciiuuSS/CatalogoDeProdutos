@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
 // Corrigindo a tipagem do segundo argumento para rotas dinâmicas
-export async function GET(request: Request, { params }: { params?: { id: string } }) {
+export async function GET(request: Request, { params }: { params: { id: string } }) {
   const accessToken = request.headers.get("authorization")?.replace("Bearer ", "");
-  const imageUrl = `https://drive.google.com/uc?export=view&id=${params?.id}`;
+  const imageUrl = `https://drive.google.com/uc?export=view&id=${params.id}`;
 
   try {
     const response = await fetch(imageUrl, {
