@@ -57,7 +57,7 @@ export async function GET(request: Request) {
       href: file.webViewLink || "#",
       url: `/api/image/${file.id}`, // Aqui é onde você coloca a URL do proxy
     }));
-
+console.log(images)
     return NextResponse.json(images);
   } catch (error) {
     console.error("Erro inesperado ao acessar Google Drive:", error);

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+<<<<<<< HEAD
 export async function GET(req: NextRequest) {
   // Extrai o pathname da URL (ex.: "/api/image/15hktv-zgn2JKvRDfnCEeT8CV1foXgbB2")
   const url = new URL(req.url);
@@ -16,6 +17,12 @@ export async function GET(req: NextRequest) {
   const accessToken = process.env.GOOGLE_DRIVE_TOKEN;
 
   // Monta a URL da imagem no Google Drive
+=======
+export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+  const id = params.id;
+
+  const accessToken = process.env.GOOGLE_DRIVE_TOKEN;
+>>>>>>> cee5396372c2ab20f61643fb829af0a31b4f3900
   const imageUrl = `https://drive.google.com/uc?export=view&id=${id}`;
 
   try {
@@ -35,8 +42,13 @@ export async function GET(req: NextRequest) {
     // Retorna a imagem com os cabeçalhos apropriados
     return new NextResponse(imageBlob, {
       headers: {
+<<<<<<< HEAD
         "Content-Type": imageBlob.type || "image/jpeg", // Define o tipo da imagem
         "Cache-Control": "public, max-age=31536000",    // Cache por 1 ano (opcional)
+=======
+        "Content-Type": imageBlob.type || "image/jpeg",
+        "Cache-Control": "public, max-age=31536000",
+>>>>>>> cee5396372c2ab20f61643fb829af0a31b4f3900
       },
     });
   } catch (error) {
