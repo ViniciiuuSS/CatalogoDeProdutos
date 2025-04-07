@@ -6,7 +6,7 @@ import Await from "./await";
 export default function Produtos() {
   const [products, setProducts] = useState<{ id: string; href: string; url: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [usePicsum] = useState<boolean>(false);
+  const [usePicsum] = useState<boolean>(true);
 
   const handleLogin = () => {
     window.location.href = "/api/auth";
