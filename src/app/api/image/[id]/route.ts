@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
-// Corrigindo a tipagem do segundo argumento para rotas dinâmicas
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, context: { params: { id: string } }) {
+  const { id } = context.params;
   const accessToken = request.headers.get("authorization")?.replace("Bearer ", "");
-  const imageUrl = `https://drive.google.com/uc?export=view&id=${params.id}`;
+  const imageUrl = `https://drive.google.com/uc?export=view&id=${id}`;
 
   try {
     const response = await fetch(imageUrl, {
@@ -17,8 +17,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
     const imageBlob = await response.blob();
     return new NextResponse(imageBlob, {
       headers: {
-        "Content-Type": imageBlob.type || "image/jpeg", // Ajuste conforme o tipo da imagem
-        "Cache-Control": "public, max-age=31536000", // Cache por 1 ano (opcional)
+        "Content-Type": imageBlob.type || "image/jpeg",
+        "Cache-Control": "public, max-age=31536000",
       },
     });
   } catch (error) {
