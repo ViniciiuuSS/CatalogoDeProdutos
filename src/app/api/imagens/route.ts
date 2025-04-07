@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const accessToken = searchParams.get("token") || process.env.GOOGLE_DRIVE_TOKEN || "";
+export async function GET() {
+  const accessToken = process.env.GOOGLE_DRIVE_TOKEN || "";
   //const clientId = process.env.GOOGLE_DRIVE_CLIENT_ID || "";
   const folderId = "1RtdUWoMRbNB8hRiGNfsDlBHnCeRvSqgD";
 
