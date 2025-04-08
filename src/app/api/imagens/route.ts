@@ -2,14 +2,13 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const accessToken = searchParams.get("token") || process.env.GOOGLE_DRIVE_TOKEN || "";
-  //const clientId = process.env.GOOGLE_DRIVE_CLIENT_ID || "";
+  const apiKey = process.env.GOOGLE_DRIVE_API_KEY || "" || searchParams;
   const folderId = "1RtdUWoMRbNB8hRiGNfsDlBHnCeRvSqgD";
 
   // Função para gerar IDs aleatórios
   const gerarIdRandom = () => crypto.randomUUID();
 
-  // Função auxiliar para buscar imagens do Picsum
+  // Função auxiliar para buscar imagens do Picsum (fallback)
   const fetchPicsumImages = async () => {
     const picsumUrl = "https://picsum.photos/400/400";
     const arrayImagens = [];
@@ -32,32 +31,30 @@ export async function GET(request: Request) {
     }
   };
 
-  // Primeira verificação: GOOGLE_DRIVE_TOKEN
-  if (!accessToken) {
-    console.warn("GOOGLE_DRIVE_TOKEN não fornecido. Usando Picsum como fallback.");
+  // Verifica se a API_KEY está disponível
+  if (!apiKey) {
+    console.warn("GOOGLE_DRIVE_API_KEY não fornecida. Usando Picsum como fallback.");
     return fetchPicsumImages();
   }
 
-  // Se há token, prossegue para o Google Drive (mesmo sem clientId)
-  const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name,webViewLink,thumbnailLink,webContentLink)`;
+  // URL atualizada com a API_KEY
+  const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&fields=files(id,name,webViewLink,thumbnailLink)&key=${apiKey}`;
+
   try {
-    const response = await fetch(url, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
+    const response = await fetch(url);
     const data = await response.json();
 
     if (!response.ok) {
-      // Se o token for inválido ou houver outro erro, cai no Picsum
-      console.warn("Erro na autenticação do Google Drive:", data.error?.message);
+      console.warn("Erro na requisição ao Google Drive:", data.error?.message);
       return fetchPicsumImages();
     }
 
     const images = data.files.map((file: { id: string | null; webViewLink: string | null; thumbnailLink: string | null; webContentLink: string | null }) => ({
       id: file.id || "id-random",
       href: file.webViewLink || "#",
-      url: `/api/image/${file.id}`, // Aqui é onde você coloca a URL do proxy
+      url: `/api/image/${file.id}`, // Mantém a URL do proxy
     }));
-console.log(images)
+
     return NextResponse.json(images);
   } catch (error) {
     console.error("Erro inesperado ao acessar Google Drive:", error);

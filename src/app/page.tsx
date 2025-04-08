@@ -47,7 +47,7 @@ export default function Home() {
                     </svg>
                   </span>
                   <Icon icon="game-icons:heart-necklace" className="text-black m-1 animate-text-color" width="16" height="16" />
-                  <h3 className="flex font-medium leading-tight">Colares Deslumbrantes</h3>
+                  <h3 className="flex font-medium leading-tight cursor-pointer">Colares Deslumbrantes</h3>
                 </li>
                 <li className="mb-10 ms-6">
                   <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
@@ -56,7 +56,7 @@ export default function Home() {
                     </svg>
                   </span>
                   <Icon icon="game-icons:diamond-ring" className="text-black m-1 animate-text-color" width="16" height="16" />
-                  <h3 className="flex font-medium leading-tight">Anéis Elegantes</h3>
+                  <h3 className="flex font-medium leading-tight cursor-pointer">Anéis Elegantes</h3>
                 </li>
                 <li className="mb-10 ms-6">
                   <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
@@ -65,7 +65,7 @@ export default function Home() {
                     </svg>
                   </span>
                   <Icon icon="game-icons:heart-earrings" className="text-black m-1 animate-text-color" width="16" height="16" />
-                  <h3 className="flex font-medium leading-tight">Brincos Sofisticados</h3>
+                  <h3 className="flex font-medium leading-tight cursor-pointer">Brincos Sofisticados</h3>
                 </li>
                 <li className="ms-6">
                   <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
@@ -74,7 +74,7 @@ export default function Home() {
                     </svg>
                   </span>
                   <Icon icon="game-icons:diamonds" className="text-black m-1 animate-text-color" width="16" height="16" />
-                  <h3 className="flex font-medium leading-tight">Pulseiras Charmosas</h3>
+                  <h3 className="flex font-medium leading-tight cursor-pointer">Pulseiras Charmosas</h3>
                 </li>
               </ol>
             </div>
