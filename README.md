@@ -1,24 +1,24 @@
 # Taisacola - Catálogo de Produtos
 
-Bem-vindo ao repositório do **Taisacola**, um catálogo de produtos desenvolvido com tecnologias modernas para uma experiência dinâmica e responsiva.
+Bem-vindo ao repositório do **Taisacola**, um catálogo de produtos desenvolvido com tecnologias modernas para oferecer uma experiência dinâmica, responsiva e visualmente atraente.
 
 ## Site
-Acesse o projeto deployado aqui:  
+Confira o projeto em produção:  
 [**https://taisacola.vercel.app**](https://taisacola.vercel.app)
 
 ## Descrição
-Este é um projeto de catálogo de produtos construído com **Next.js**, utilizando **TypeScript** para tipagem segura e escalável. A estilização é feita com **Tailwind CSS** e componentes do **Flowbite**, garantindo um design moderno e funcional. O sistema consome uma API do **Google Drive** para exibição de imagens e uma API de imagens aleatórias para enriquecer a experiência visual quando a api do Google Drive está fora ou sem variaveis de ambiente.
+O **Taisacola** é um catálogo de produtos construído com **Next.js** e **TypeScript**, garantindo um código robusto e escalável. A interface é estilizada com **Tailwind CSS** e enriquecida com componentes do **Flowbite**, resultando em um design moderno e funcional. O projeto integra a **API do Google Drive** para exibição de imagens e utiliza uma **API de imagens aleatórias** como fallback, trazendo dinamismo visual mesmo quando a API principal está indisponível ou sem variáveis de ambiente configuradas.
 
 ## Tecnologias Utilizadas
-- **Next.js**: Framework React para renderização server-side e static site generation.
-- **TypeScript**: Adiciona tipagem estática ao JavaScript, melhorando a manutenção do código.
-- **Tailwind CSS**: Framework de estilização utilitário para um design rápido e customizável.
-- **Flowbite**: Biblioteca de componentes UI baseada em Tailwind CSS.
-- **Google Drive API**: Integração para armazenamento e gerenciamento de dados.
-- **API de Imagens Aleatórias**: Geração dinâmica de imagens para o catálogo.
+- **Next.js**: Framework React para renderização server-side e geração de sites estáticos.
+- **TypeScript**: Tipagem estática para maior segurança e facilidade de manutenção.
+- **Tailwind CSS**: Estilização utilitária para designs rápidos e personalizados.
+- **Flowbite**: Componentes UI prontos, integrados ao Tailwind CSS.
+- **Google Drive API**: Armazenamento e exibição de imagens diretamente do Drive.
+- **API de Imagens Aleatórias**: Imagens dinâmicas para enriquecer o catálogo.
 
 ## Funcionalidades
-- Exibição de produtos em um catálogo interativo.
-- Integração com Google Drive acesso a conteúdos.
-- Geração de imagens aleatórias para ilustrar os produtos.
-- Interface responsiva e amigável.
+- Catálogo interativo para exibição de produtos.
+- Integração com o Google Drive para acesso a conteúdos visuais.
+- Uso de imagens aleatórias como alternativa criativa.
+- Interface responsiva, adaptada para todos os dispositivos.
