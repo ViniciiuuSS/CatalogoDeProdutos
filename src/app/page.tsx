@@ -32,7 +32,7 @@ export default function Home() {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <div className="relative flex justify-center items-center rounded-full px-3 py-1 text-sm/6 btnWhats bg-emerald-500 text-white ring-1 ring-green-100 hover:ring-gray-900/20">
                 <WhatsappLogo className="w-8 h-8 lg:w-10 lg:h-10" /> Me chame no
-                <a href="https://api.whatsapp.com/send?phone=17996183333&text=Comprar Produtos" className="font-bold text-white">
+                <a href="https://api.whatsapp.com/send?phone=17981328002&text=Comprar Produtos" className="font-bold text-white">
                   &nbsp;WhatsApp
                   <span className="absolute inset-0" aria-hidden="true"></span>
                 </a>
