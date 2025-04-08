@@ -52,7 +52,7 @@ export default function Produtos() {
           // Gera o link para a página dinâmica com o ID da imagem
           const pageUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/${product.id}`;
           // Gera o link do WhatsApp com a URL da página dinâmica
-          const whatsappLink = `https://api.whatsapp.com/send?phone=5517996183333&text=${encodeURIComponent(
+          const whatsappLink = `https://api.whatsapp.com/send?phone=5517981328002&text=${encodeURIComponent(
             `Olá, gostei deste produto: ${pageUrl}`
           )}`;
 
