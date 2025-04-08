@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const apiKey = process.env.GOOGLE_DRIVE_API_KEY || "" || searchParams;
-  const folderId = "1RtdUWoMRbNB8hRiGNfsDlBHnCeRvSqgD";
+  const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
 
   // Função para gerar IDs aleatórios
   const gerarIdRandom = () => crypto.randomUUID();
