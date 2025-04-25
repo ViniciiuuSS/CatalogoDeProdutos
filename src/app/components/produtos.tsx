@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image'
 import { useEffect, useState } from "react";
 import Await from "./await";
 
@@ -62,11 +63,18 @@ export default function Produtos() {
                 <div>
                   <h3 className="text-sm text-gray-700">
                     <a href={whatsappLink}>
-                    <img
+                    <Image
                         src={product.url}
+                        placeholder="blur"
+                        blurDataURL={product.url}
                         alt={`Produto ${product.id}`}
+                        width={500}
+                        height={500}
+                        quality={60}
+                        sizes="(max-width: 1024px) 100vw, 33vw"
                         className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
-                      />
+                        priority
+                      />  
                     </a>
                   </h3>
                 </div>
