@@ -1,11 +1,4 @@
-export default function Await({ semProdutos }: { semProdutos: boolean}) {
-  if (!semProdutos) {
-    return (
-      <div className="w-full flex justify-center p-36">
-        <p className="text-gray-500">Nenhum produto encontrado.</p>
-      </div>
-    );
-  }
+export default function Await() {
   return (
     <div role="status" className="w-full flex justify-center p-36">
       <svg aria-hidden="true" className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-pink-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
